@@ -12,6 +12,9 @@ public class Broker implements Observable {
     private StockMarket stockMarket;
 
     public Broker(StockMarket stockMarket) {
+        if (stockMarket == null) {
+            throw new IllegalArgumentException("The stock market cannot be null.");
+        }
         this.observers = new ArrayList<>();
         this.stockMarket = stockMarket;
     }
@@ -20,17 +23,23 @@ public class Broker implements Observable {
         return stockMarket;
     }
 
-    public List<Observer> getObservers(){
+    public List<Observer> getObservers() {
         return Collections.unmodifiableList(observers);
     }
 
     @Override
     public void addObserver(Observer observer) {
+        if (observer == null) {
+            throw new IllegalArgumentException("The observer cannot be null.");
+        }
         observers.add(observer);
     }
 
     @Override
     public void removeObserver(Observer observer) {
+        if (observer == null) {
+            throw new IllegalArgumentException("The observer cannot be null.");
+        }
         observers.remove(observer);
     }
 
@@ -42,6 +51,9 @@ public class Broker implements Observable {
     }
 
     public void updateStockValue(float newValue) {
+        if (newValue < 0f) {
+            throw new IllegalArgumentException("Value cannot be negative.");
+        }
         float oldValue = stockMarket.getCurrentValue();
         stockMarket.updateValue(newValue);
 
