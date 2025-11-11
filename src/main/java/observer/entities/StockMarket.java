@@ -1,4 +1,4 @@
-package observer;
+package observer.entities;
 
 public class StockMarket {
     private String name;
@@ -35,7 +35,7 @@ public class StockMarket {
         return currency;
     }
 
-    public void updatedValue(float newValue){
+    public void updateValue(float newValue){
         this.previousValue = this.currentValue;
         this.currentValue = newValue;
 
